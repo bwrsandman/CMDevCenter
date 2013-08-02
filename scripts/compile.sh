@@ -3,22 +3,25 @@
 device=$1
 branch=$2
 package=$3
+menu=full_$device-userdebug
 
 echo "Compiling device: $device"
 echo "Branch: $branch"
+echo "Menu: $menu"
 
 # Check existance of repository
-if [ ! -d Makefile || -n build/envsetup.sh ]; then
+if [[ ! -e Makefile || ! -e build/envsetup.sh ]]; then
 	echo
 
-        echo "Repository empty or corrupted.\nRun Sync again." >&2
+        echo "Repository empty or corrupted. Run Sync again." >&2
         read -p "Ok [Enter]"
+	exit 1
 fi
 
 
 read -p "Press [Enter] to start compile"
 source build/envsetup.sh
-lunch full_$device-userdebug
+lunch $menu
 mka $package
 
 echo
