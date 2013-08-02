@@ -1207,7 +1207,7 @@ Typing &lt;b&gt;Settings&lt;/b&gt; will build the Settings.apk&lt;/small&gt;</pr
                                   </packing>
                                 </child>
                                 <child>
-                                  <object class="GtkEntry" id="entry1">
+                                  <object class="GtkEntry" id="ent_package">
                                     <property name="visible">True</property>
                                     <property name="can_focus">True</property>
                                     <property name="valign">start</property>

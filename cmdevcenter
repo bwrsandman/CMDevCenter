@@ -345,6 +345,23 @@ class CMDC:
                 i.set_markup('<small>%s</small>' % Parser().read(text[num]))
                 num+=1
 
+        def runCompileCmd(button):
+            term = Parser().read("terminal").split(" ")[0]
+            if Util().which(term) is None:
+                Dialogs().CDial(2, 'No terminal choosen', 'Unable to find your terminal, please specify a terminal path in settings.')
+                return
+            ent_package = builder.get_object("ent_package")
+            PACKAGE = ent_package.get_text()
+            o_rp = Parser().read("repo_path")
+            os.chdir(o_rp)
+            print o_rp
+            DEVICE = Parser().read("device")
+            BRANCH = Parser().read("branch")
+            TERM = Parser().read("terminal")
+            o_cwd = os.getcwd()
+            os.system("%s '%s/compile.sh %s %s %s'" % (TERM, Str.FINAL_APP_SCRIPTS, DEVICE, BRANCH, PACKAGE))
+            os.chdir(o_cwd)
+
         # Settings functions
         def onSettingsPressed(button):
             frame_sync.hide()
@@ -455,6 +472,8 @@ class CMDC:
         # Compile objects
         btn_main_compile = builder.get_object("btn_main_compile")
         btn_main_compile.connect("clicked", onCompilePressed)
+        btn_compile = builder.get_object("btn_compile")
+        btn_compile.connect("clicked", runCompileCmd)
         
         # Settings objects
         btn_main_settings = builder.get_object("btn_main_settings")

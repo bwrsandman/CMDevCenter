@@ -27,6 +27,7 @@
 !layout.glade
 !README.md
 !scripts/sync.sh
+!scripts/compile.sh
 !Build/ArchLinux/PKGBUILD
 !Build/Debian/debian/control
 !Build/Debian/debian/compat
